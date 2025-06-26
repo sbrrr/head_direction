@@ -1,0 +1,31 @@
+Code to produce playable videos:
+
+# -r 60 : 60 fps
+# -i %d.png : inputs sequence of pngs titled "x.png" for x=0,1,...
+# -vf "split=2[clr][bg];[bg]drawbox=c=black:t=fill[bg];[bg][clr]overlay" : changes transparent blackground to black background since mp4 and many other media players can't process transparent backgrounds.
+# -s 990x790 : original pngs were 989x789. libx264 requires dimensions to be even numbered, so closest ones were used
+# -c:v libx264 : H.264 codec, great compression and high picture quality
+# -crf 0 : Controls sampling rate? lower values give better quality, but larger output file size.
+# -pix_fmt yuv44p10le : Visually lossless output format, not playable in windows media player, but is supported by VLC. 
+# video.mp4 : name and format of output file
+
+
+ffmpeg -r 60 -i %d.png -vf "split=2[clr][bg];[bg]drawbox=c=black:t=fill[bg];[bg][clr]overlay" -s 990x790 -c:v libx264 -crf 0 -pix_fmt yuv444p10le video.mp4
+
+Note! The above produces a video that works in VLC, but not WMP. 
+
+For something that is playable in windows media player use pix_fmt yuv420p, nonzero crf, .mp4 or .mov (not .mkv),
+and libx264
+
+Other codecs tested: -c:v png, -c:v copy, -c:v libx264rgb, -c:v prores
+
+Prores: supports transparent png input and transparent output. Outputs only .mkv. Produces massive files sizes. Also not playable in WMP
+Png: negative compression? supports transparency. Not supported by WMP?
+Copy: similar to png
+
+#Pix_fmts
+
+yuv44p10le: visually lossless conversion, not supported by WMP :(, great compression
+yuv420p: good enough image quality, playable in WNP, great compression.
+
+Final note: keep in mind some codecs can't handle transparency and pix_fmt and some output formats dont work in WMP!
