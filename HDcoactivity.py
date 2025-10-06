@@ -48,14 +48,6 @@ celldata = celldata[sgood, :]
 binnedspikes = binnedspikes[sgood,:]
 cellnames = cellnames[sgood]
 
-##################
-##################
-##################
-##### above is same in both scripts (except sigma=5)! below is different
-##################
-##################
-##################
-
 ncells = len(celldata)
 
 # Binary coactivity vector for each cell; 1 in bin i if at least 5 bins 
@@ -90,6 +82,7 @@ for i in range(len(celldata)):
           continue
 
 #Computes which pairs of cells are significantly coactive
+#DONT USE CODES BELOW. Both codes below are slow compared to the improved code in mpfc project." 
 '''
 def get_indices(list):
   indices=[]
@@ -132,7 +125,7 @@ for i in range(1):
       continue
 
 #Slightly faster code to compute which pairs are significantly coactive
-#Code below took 13 hours to run, ran it once and saved it locally on pc.
+#Code below took 13 hours to run, ran it once and saved data locally on pc.
 for j in range(len(biactivity)-1,-1,-1):
   shuffles=[]
   for k in range(num_shuffles):
@@ -343,4 +336,5 @@ coactivity_over_time = get_coactivity_over_time()
 # import os
 # os.chdir(r"C:\Users\Bruker\OneDrive - NTNU\Bachelor i matematiske fag\3. år\6. semester\Bacheloroppgave\Head direction data and script")
     
+
 #####################
