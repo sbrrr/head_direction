@@ -81,8 +81,9 @@ for i in range(len(celldata)):
         else:
           continue
 
-#Computes which pairs of cells are significantly coactive
-#DONT USE CODES BELOW. Both codes below are slow compared to the improved code in mpfc project." 
+# Computes which pairs of cells are significantly coactive
+# DONT USE CODES BELOW FOR COMPUTING WHICH PAIRS OF CELLS ARE SIGNIFICANTLY COACTIVE.
+# Both versions below are slow compared to the improved code in mpfc project. 
 '''
 def get_indices(list):
   indices=[]
@@ -338,3 +339,4 @@ coactivity_over_time = get_coactivity_over_time()
     
 
 #####################
+
