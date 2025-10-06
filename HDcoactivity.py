@@ -1,4 +1,3 @@
-
 import scipy.io
 import scipy.ndimage
 import numpy as np
@@ -339,4 +338,5 @@ coactivity_over_time = get_coactivity_over_time()
     
 
 #####################
+
 
